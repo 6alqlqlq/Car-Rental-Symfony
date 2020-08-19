@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Cars list</h1>
+    <table class="table table-bordered table-dark" style="margin-top: 30px;">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Car brand</th>
+                <th scope="col">Car model</th>
+                <th scope="col">Year</th>
+                <th scope="col">Capacity</th>
+                <th scope="col">Doors</th>
+                <th scope="col">Engine</th>
+                <th scope="col">Gearbox</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created at</th>
+                <th scope="col">Updated at</th>
+                <th scope="col">Image</th>
+                <th scope="col">Price</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <th scope="row"><a href="{{ path('car_show', { 'id': car.id }) }}">{{ car.id }}</a></th>
+                <td>{{ car.carBrand }}</td>
+                <td>{{ car.carModel }}</td>
+                <td>{{ car.year }}</td>
+                <td>{{ car.capacity }}</td>
+                <td>{{ car.doors }}</td>
+                <td>{{ car.engine }}</td>
+                <td>{{ car.gearbox }}</td>
+                <td>{% if car.status %}Yes{% else %}No{% endif %}</td>
+                <td>{% if car.createdAt %}{{ car.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if car.updatedAt %}{{ car.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ car.image }}</td>
+                <td>{{ car.price }} $</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('car_show', { 'id': car.id }) }} ">Show</a>
+                    <a class="btn btn-primary" href="{{ path('car_edit', { 'id': car.id }) }}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+            <a class="btn btn-primary " style="margin-bottom: 30px; href="{{ path('car_new') }}">Create a new car</a>
+
+{% endblock %}

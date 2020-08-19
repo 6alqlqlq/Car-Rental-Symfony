@@ -16,6 +16,5 @@
 /vendor/
 /web/bundles/
 /.idea
-.idea/CarRental.iml
 .idea
-.idea/php.xml
+/web/uploads/rentals

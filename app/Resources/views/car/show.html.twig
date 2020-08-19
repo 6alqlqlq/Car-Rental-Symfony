@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table" style="margin-top: 70px">
+        <tbody>
+        <tr>
+            <th scope="col">Id</th>
+            <td scope="row">{{ car.id }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Car brand</th>
+            <td>{{ car.carBrand }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Car model</th>
+            <td>{{ car.carModel }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Year</th>
+            <td>{{ car.year }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Capacity</th>
+            <td>{{ car.capacity }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Doors</th>
+            <td>{{ car.doors }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Engine</th>
+            <td>{{ car.engine }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Gearbox</th>
+            <td>{{ car.gearbox }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Status</th>
+            <td>{% if car.status %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Createdat</th>
+            <td>{% if car.createdAt %}{{ car.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Updatedat</th>
+            <td>{% if car.updatedAt %}{{ car.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>{{ car.image }}</td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td>{{ car.price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{{ path('car_index') }}">Back to the list</a>
+
+    <a class="btn btn-primary" href="{{ path('car_edit', { 'id': car.id }) }}">Edit</a>
+
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary" type="submit" value="Delete" style="margin-top: 20px;margin-bottom: 20px">
+    {{ form_end(delete_form) }}
+
+
+
+{% endblock %}

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class RegistrationController extends Controller
+class UserController extends Controller
 {
     /**
      * @Route("/register", name="user_register")
@@ -44,9 +44,6 @@ class RegistrationController extends Controller
             return $this->redirectToRoute('security_login');
         }
 
-        return $this->render(
-            'users/register.html.twig',
-            ['form' => $form->createView()]
-        );
+        return $this->render('users/register.html.twig', ['form' => $form->createView()]);
     }
 }

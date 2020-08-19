@@ -32,7 +32,7 @@ See http://symfony.com/doc/current/book/templating.html#template-inheritance-and
                         <a class="nav-link" href="/">Home </a>
                     </li>
                     <li class="nav-item active ">
-                        <a class="nav-link" href="">Cars</a>
+                        <a class="nav-link" href="{{ path('car_display') }}">Cars</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="">About Us</a>
@@ -40,31 +40,41 @@ See http://symfony.com/doc/current/book/templating.html#template-inheritance-and
                     <li class="nav-item active">
                         <a class="nav-link" href="">Contact Us</a>
                     </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('car_index') }}">Admin/Car</a>
+                    </li>
                 </ul>
 
 
                 {% if app.user %}
+                <ul class="navbar-nav ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">Logged as: {{ app.user.email }}</a>
+                    </li>
+                </ul>
                 <a id="navbarDropdown" class="btn btn-primary dropdown-toggle" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="caret"></span>
+
+                    <span class="caret">Settings</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="">Logout </a>
+                    <a class="dropdown-item" href="{{ path('security_logout') }}">Logout </a>
 
                     <a class="dropdown-item" href="#">Settings</a>
                     <a class="dropdown-item" href="#">My rents</a>
                     <a class="dropdown-item" href="#">Status</a>
                     {% else %}
                         <ul class="navbar-nav ">
-                    <li class="nav-item active ">
-                           <a class="nav-link" href="{{ path('user_register') }}">
-                                REGISTER
-                            </a>
-                    </li>
                             <li class="nav-item active ">
-                            <a class="nav-link" href="{{ path('security_login') }}">
-                                LOGIN
-                            </a>
+                                <a class="nav-link" href="{{ path('user_register') }}">
+                                    REGISTER
+                                </a>
+                            </li>
+                            <li class="nav-item active ">
+                                <a class="nav-link" href="{{ path('security_login') }}">
+                                    LOGIN
+                                </a>
                             </li>
                         </ul>
                     {% endif %}
@@ -74,7 +84,7 @@ See http://symfony.com/doc/current/book/templating.html#template-inheritance-and
     </header>
 {% endblock %}
 <main role="main">
-    <div class="container-fluid" >
+    <div class="container-fluid">
         {% block body %}
             <div class="row">
                 <div id="main" class="col-sm-12">
