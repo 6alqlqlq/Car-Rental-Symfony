@@ -11,7 +11,6 @@ See http://symfony.com/doc/current/book/templating.html#template-inheritance-and
     <title>{% block title %}Car Rental{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
@@ -40,18 +39,20 @@ See http://symfony.com/doc/current/book/templating.html#template-inheritance-and
                     <li class="nav-item active">
                         <a class="nav-link" href="">Contact Us</a>
                     </li>
-
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('car_index') }}">Admin/Car</a>
-                    </li>
                 </ul>
 
 
                 {% if app.user %}
                 <ul class="navbar-nav ">
+
                     <li class="nav-item active">
                         <a class="nav-link" href="">Logged as: {{ app.user.email }}</a>
                     </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item active">
+                            <a class="nav-link active" href="{{ path('dashboard') }}">Dashboard</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 <a id="navbarDropdown" class="btn btn-primary dropdown-toggle" href="#" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,8 +63,7 @@ See http://symfony.com/doc/current/book/templating.html#template-inheritance-and
                     <a class="dropdown-item" href="{{ path('security_logout') }}">Logout </a>
 
                     <a class="dropdown-item" href="#">Settings</a>
-                    <a class="dropdown-item" href="#">My rents</a>
-                    <a class="dropdown-item" href="#">Status</a>
+
                     {% else %}
                         <ul class="navbar-nav ">
                             <li class="nav-item active ">
@@ -106,7 +106,6 @@ See http://symfony.com/doc/current/book/templating.html#template-inheritance-and
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
 {% endblock %}
 
 </body>

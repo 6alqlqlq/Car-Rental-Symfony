@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard.html.twig' %}
 
 {% block body %}
-    <table class="table" style="margin-top: 70px">
+    <table class="table" >
         <tbody>
         <tr>
             <th scope="col">Id</th>
-            <td scope="row">{{ car.id }}</td>
+            <td>{{ car.id }}</td>
         </tr>
         <tr>
             <th scope="col">Car brand</th>
@@ -40,11 +40,11 @@
             <td>{% if car.status %}Yes{% else %}No{% endif %}</td>
         </tr>
         <tr>
-            <th>Createdat</th>
+            <th>Created at</th>
             <td>{% if car.createdAt %}{{ car.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>
-            <th>Updatedat</th>
+            <th>Updated at</th>
             <td>{% if car.updatedAt %}{{ car.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
         </tr>
         <tr>

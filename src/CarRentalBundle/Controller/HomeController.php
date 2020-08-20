@@ -3,6 +3,7 @@
 namespace CarRentalBundle\Controller;
 
 use CarRentalBundle\Entity\Car;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,4 +43,17 @@ class HomeController extends Controller
         // replace this example code with whatever you need
         return $this->render('car/display.html.twig',['car'=>$car]);
     }
+
+    /**
+     * @Route("/admin/dashboard", name="dashboard")
+     * @Security ("has_role('ROLE_ADMIN')")
+     * @param Request $request
+     * @return Response|null
+     */
+    public function dashboardAction(Request $request)
+    {
+        return $this->render('dashboard.html.twig');
+    }
+
+
 }

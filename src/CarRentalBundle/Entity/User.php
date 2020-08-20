@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="CarRentalBundle\Repository\UserRepository")
  * @UniqueEntity(fields="email", message="Email already taken")
  */

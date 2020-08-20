@@ -3,6 +3,7 @@
 namespace CarRentalBundle\Controller;
 
 use CarRentalBundle\Entity\Car;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -15,13 +16,13 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Car controller.
  *
- * @Route("car")
+ * @Route("admin/cars")
  */
 class CarController extends Controller
 {
     /**
      * Lists all car entities.
-     *
+     * @Security ("has_role('ROLE_ADMIN')")
      * @Route("/", name="car_index",methods={"GET"})
      */
     public function indexAction()
@@ -39,6 +40,7 @@ class CarController extends Controller
      * Creates a new car entity.
      *
      * @Route("/new", name="car_new",methods={"GET", "POST"})
+     * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @return RedirectResponse|Response|null
      */
@@ -67,6 +69,7 @@ class CarController extends Controller
      * Finds and displays a car entity.
      *
      * @Route("/{id}", name="car_show",methods={"GET"})
+     * @Security ("has_role('ROLE_ADMIN')")
      * @param Car $car
      * @return Response|null
      */
@@ -84,6 +87,7 @@ class CarController extends Controller
      * Displays a form to edit an existing car entity.
      *
      * @Route("/{id}/edit", name="car_edit",methods={"GET", "POST"})
+     * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @param Car $car
      * @return RedirectResponse|Response|null
@@ -112,6 +116,7 @@ class CarController extends Controller
      * Deletes a car entity.
      *
      * @Route("/{id}", name="car_delete",methods={"DELETE"})
+     * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @param Car $car
      * @return RedirectResponse
@@ -132,6 +137,7 @@ class CarController extends Controller
 
     /**
      * Creates a form to delete a car entity.
+     * @Security ("has_role('ROLE_ADMIN')")
      *
      * @param Car $car The car entity
      *
