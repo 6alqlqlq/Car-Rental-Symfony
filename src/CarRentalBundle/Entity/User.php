@@ -212,5 +212,9 @@ class User implements UserInterface
         $this->plainPassword = $password;
     }
 
+    public function __toString()
+    {
+        return implode(' ', [$this->lastName, $this->firstName,$this->email]);
+    }
 
 }

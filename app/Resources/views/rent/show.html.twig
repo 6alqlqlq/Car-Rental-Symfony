@@ -1,0 +1,39 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <table class="table" >
+        <tbody>
+        <tr>
+            <th scope="col">Id</th>
+            <td>{{ rent.id }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Car brand</th>
+            <td>{{ rent.car }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Car model</th>
+            <td>{{ rent.user }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Year</th>
+            <td>{{ rent.startAt|date }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Capacity</th>
+            <td>{{ rent.endAt|date }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{{ path('rent_index') }}">Back to the list</a>
+
+    <a class="btn btn-primary" href="{{ path('rent_edit', { 'id': rent.id }) }}">Edit</a>
+
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary" type="submit" value="Delete" style="margin-top: 20px;margin-bottom: 20px">
+    {{ form_end(delete_form) }}
+
+
+
+{% endblock %}

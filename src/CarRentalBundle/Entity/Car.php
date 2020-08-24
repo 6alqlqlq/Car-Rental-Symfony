@@ -403,4 +403,8 @@ class Car
     {
         return $this->price;
     }
+    public function __toString()
+    {
+        return $this->getCarBrand() . ' ' . $this->getCarModel() . ' ' . $this->getEngine();
+    }
 }

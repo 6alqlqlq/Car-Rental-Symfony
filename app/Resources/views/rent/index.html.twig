@@ -1,0 +1,39 @@
+{% extends "dashboard.html.twig" %}
+
+{% block body %}
+
+        <table class="table table-dark" >
+            <thead>
+            <tr>
+                <th scope="col">Id </th>
+                <th scope="col">Car Model/Brand/Engine</th>
+                <th scope="col">User FirstName/LastName/Email</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+            </tr>
+            </thead>
+
+            {% for rent in rents %}
+            <tbody>
+                <tr>
+                    <td>{{ rent.id }}</td>
+                    <td>{{ rent.car }}</td>
+                    <td>{{ rent.user }}</td>
+                    <td>{{ rent.startAt|date }}</td>
+                    <td>{{ rent.endAt|date }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('rent_show', { 'id': rent.id }) }} ">Show</a>
+                        <a class="btn btn-primary" href="{{ path('rent_edit', { 'id': rent.id }) }}">Edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            <a href="{{ path('rent_new') }}" class="btn btn-primary">Add Rent</a>
+        <div id="data">
+
+        </div>
+
+{% endblock %}
+
+

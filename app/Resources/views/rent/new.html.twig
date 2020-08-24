@@ -1,0 +1,21 @@
+{% extends "dashboard.html.twig" %}
+
+{% block body %}
+
+
+
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.user, {label: 'User: '}) }}
+        {{ form_row(form.car, {label: 'Car: '}) }}
+        {{ form_row(form.startAt, {label: 'Start date: '}) }}
+        {{ form_row(form.endAt, {label: 'End date: '}) }}
+        {{ form_rest(form) }}
+        <p class="text-left" style="margin-top: 25px">
+                <a class="btn btn-primary" href="{{ path('rent_index') }}">Back to List</a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </p>
+        {{ form_end(form) }}
+
+
+{% endblock %}
