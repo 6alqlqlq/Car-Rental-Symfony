@@ -155,13 +155,12 @@ class RentController extends Controller
     }
 
     /**
-     * Deletes a car entity.
+     * User rent
      *
      * @Route("/{id}", name="user_rent",methods={"GET","POST"})
-     * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @param Rent $rents
-     * @return RedirectResponse
+     * @return Response
      */
     public function rentNewAction(Request $request)
     {

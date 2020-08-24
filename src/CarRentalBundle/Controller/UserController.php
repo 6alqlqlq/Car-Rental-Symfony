@@ -4,7 +4,10 @@ namespace CarRentalBundle\Controller;
 
 use CarRentalBundle\Entity\User;
 use CarRentalBundle\Form\UserType;
+use CarRentalBundle\Service\Users\UserServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +16,15 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends Controller
 {
+    /**
+     * @var UserServiceInterface
+     */
+    private $userService;
+
+    public function __construct(UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
     /**
      * @Route("/register", name="user_register")
      * @param Request $request
@@ -46,4 +58,34 @@ class UserController extends Controller
 
         return $this->render('users/register.html.twig', ['form' => $form->createView()]);
     }
+
+    /**
+     * @Route("/profile", name="user_profile")
+     */
+    public function profile()
+    {
+        return $this->render("users/profile.html.twig",
+            ['user' => $this->userService->currentUser()]);
+    }
+
+    /**
+     * @Route ("/profile/edit", name="user_edit_profile",methods={"GET"})
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @return Response
+     */
+    public function edit()
+    {
+        $currentUser = $this->userService->currentUser();
+
+        return $this->render("users/edit.html.twig",
+            [
+                'user' => $currentUser,
+                'form' => $this->createForm(UserType::class)->createView()
+
+            ]
+        );
+    }
+
+
 }

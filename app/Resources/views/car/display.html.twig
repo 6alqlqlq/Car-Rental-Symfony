@@ -59,23 +59,17 @@
                                     </div>
                                     <div class="col-md-12">
                                         <small>Published: {% if car.createdAt %}{{ car.createdAt|date('Y-m-d H:i:s') }}{% endif %}</small>
-                                        <a href="" class="btn btn-primary">Book Now</a>
+                                        <a href="{{ path('user_rent', { 'id': car.id }) }}" class="btn btn-primary">Book Now</a>
                                         <a href="" class="btn btn-primary">Details</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
-                    <div class="container" style="margin-left: 360px;">
-                        {# Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount #}
-                    </div>
-                    <div class="container" style="margin-left: 350px;">
-                        {# @Html.PagedListPager(Model, page => Url.Action("Index", "Cars", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })) #}
-                    </div>
                 </div>
             </div>
-        </div><!-- /.row -->
-    </div><!-- container -->
+        </div><
+    </div>
 
 {% endblock %}
 
