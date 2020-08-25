@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height:94vh">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header"> Order</div>
+                    <div class="card-body">
+                        <h3> Please enter date </h3>
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+
+                        <button class="btn btn-dark"><i class="ik ik-save"></i>{{ button_label|default('Save') }}
+                        </button>
+                        {{ order.carid }}
+                        {{ order.userid }}
+
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

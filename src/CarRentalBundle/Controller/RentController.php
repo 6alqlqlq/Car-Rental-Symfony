@@ -12,17 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Rents controller.
- *
- * @Route("admin/rents")
- */
+
 class RentController extends Controller
 {
     /**
      * Lists all car entities.
      * @Security ("has_role('ROLE_ADMIN')")
-     * @Route("/", name="rent_index",methods={"GET"})
+     * @Route("admin/rents", name="rent_index",methods={"GET"})
      */
     public function indexAction()
     {
@@ -37,7 +33,7 @@ class RentController extends Controller
 
     /**
      * Creates rent
-     * @Route("/new", name="rent_new",methods={"GET", "POST"})
+     * @Route("admin/rents/new", name="rent_new",methods={"GET", "POST"})
      * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @return RedirectResponse|Response|null
@@ -65,15 +61,10 @@ class RentController extends Controller
     }
 
 
-
-
-
-
-
     /**
      * Finds and displays a rent entity.
      *
-     * @Route("/{id}", name="rent_show",methods={"GET"})
+     * @Route("admin/rents/{id}", name="rent_show",methods={"GET"})
      * @Security ("has_role('ROLE_ADMIN')")
      * @param Rent $rent
      * @return Response|null
@@ -91,7 +82,7 @@ class RentController extends Controller
     /**
      * Displays a form to edit an existing car entity.
      *
-     * @Route("/{id}/edit", name="rent_edit",methods={"GET", "POST"})
+     * @Route("admin/rents/{id}/edit", name="rent_edit",methods={"GET", "POST"})
      * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @param Rent $rents
@@ -119,7 +110,7 @@ class RentController extends Controller
     /**
      * Deletes a car entity.
      *
-     * @Route("/{id}", name="rent_delete",methods={"DELETE"})
+     * @Route("admin/rents/{id}", name="rent_delete",methods={"DELETE"})
      * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @param Rent $rents
@@ -153,38 +144,4 @@ class RentController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
-
-    /**
-     * User rent
-     *
-     * @Route("/{id}", name="user_rent",methods={"GET","POST"})
-     * @param Request $request
-     * @param Rent $rents
-     * @return Response
-     */
-    public function rentNewAction(Request $request)
-    {
-        $rents = new Rent();
-        $form = $this->createForm(RentType::class, $rents);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($rents);
-            $em->flush();
-
-            $this->addFlash('success', 'Successfully added rent!');
-
-            return $this->redirectToRoute('homepage');
-        }
-
-        return $this->render('car/rent.html.twig', array(
-            'rents' => $rents,
-            'form' => $form->createView(),
-        ));
-    }
-
-
-
-
 }
