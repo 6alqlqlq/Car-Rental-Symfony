@@ -1,0 +1,40 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <table class="table" >
+        <tbody>
+        <tr>
+            <th scope="col">Id</th>
+            <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Email</th>
+            <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+            <th scope="col">First Name</th>
+            <td>{{ user.firstName }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Last Name</th>
+            <td>{{ user.lastName }}</td>
+        </tr>
+        <tr>
+            <th scope="col">Password</th>
+            <td>{{ user.password }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="{{ path('user_index') }}">Back to the list</a>
+
+    <a class="btn btn-primary" href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
+
+    {{ form_start(delete_form) }}
+    <input class="btn btn-primary" type="submit" value="Delete" style="margin-top: 20px;margin-bottom: 20px">
+    {{ form_end(delete_form) }}
+
+
+
+{% endblock %}
+

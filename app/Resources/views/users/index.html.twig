@@ -1,0 +1,33 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <h1>User list</h1>
+    <table class="table table-bordered table-dark" style="margin-top: 30px;">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <th scope="row"><a href="">{{ user.id }}</a></th>
+                <td>{{ user.email }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('user_show', { 'id': user.id }) }} ">Show</a>
+                    <a class="btn btn-primary" href="{{ path('user_edit', { 'id': user.id }) }}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <a class="btn btn-primary " style="margin-bottom: 30px;" href="{{ path('user_new') }}">Create a new user</a>
+
+{% endblock %}
+
