@@ -58,7 +58,7 @@
                                     <div class="col-md-12">
                                         <small>Published: {% if car.createdAt %}{{ car.createdAt|date('Y-m-d H:i:s') }}{% endif %}</small>
                                         <a href="{{ path('orders_new', { 'carid': car.id }) }}" class="btn btn-primary">Book Now</a>
-                                        <a href="" class="btn btn-primary">Details</a>
+                                        <a href="{{ path('single_car_show',{ 'id':car.id }) }}" class="btn btn-primary">Details</a>
                                     </div>
                                 </div>
                             </div>

@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container" >
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <img class="img-thumbnail" src="{{ asset('uploads/rentals/' ~ car.image) }}" width="500px" height="300px" style="margin-left: 260px">
+            </div>
+        </div>
+    </div>
+    <div class="container" style="margin-bottom: 220px">
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="text-danger">Overview</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <h5 class="text-secondary">Car Brand</h5>
+                                <h6>{{ car.carBrand }}</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h5 class="text-secondary">Car Model</h5>
+                                <h6>{{ car.carModel }}</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h5 class="text-secondary">Year of Manufacturing</h5>
+                                <h6>{{ car.year }}</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h5 class="text-secondary">Engine</h5>
+                                <h6>{{ car.engine }}</h6>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <h5 class="text-secondary">Gearbox</h5>
+                                <h6>{{ car.gearbox }}</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h5 class="text-secondary">Capacity</h5>
+                                <h6>{{ car.capacity }}</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h5 class="text-secondary">Doors</h5>
+                                <h6>{{ car.doors }}</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <h5 class="text-secondary">Price</h5>
+                                <h6>{{ car.price }}</h6>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-8">
+                                <h5 class="text-secondary">CAR LOCATION</h5>
+                                <h6>home</h6>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="btn btn-primary" href="{{ path('orders_new', { 'carid': car.id }) }}">Order</a>
+
+                                <a class="btn btn-primary" href="{{ path('car_display') }}">Back to the list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

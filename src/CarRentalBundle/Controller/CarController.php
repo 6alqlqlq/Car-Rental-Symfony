@@ -171,4 +171,21 @@ class CarController extends Controller
             $car->setImage($fileName);
         }
     }
+
+    /**
+     * Finds and displays a car entity.
+     *
+     * @Route("display/{id}", name="single_car_show",methods={"GET"})
+     * @Security ("has_role('ROLE_ADMIN')")
+     * @param Car $car
+     * @return Response|null
+     */
+    public function singleShowAction(Car $car)   {
+
+
+        return $this->render('car/car.html.twig', array(
+            'car' => $car,
+
+        ));
+    }
 }
