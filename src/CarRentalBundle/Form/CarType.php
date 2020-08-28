@@ -3,6 +3,7 @@
 namespace CarRentalBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,8 +24,8 @@ class CarType extends AbstractType
             ->add('engine')
             ->add('gearbox')
             ->add('status')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('createdAt',DateType::class ,[ 'widget' => 'single_text',])
+            ->add('updatedAt',DateType::class ,[ 'widget' => 'single_text',])
             ->add('image',FileType::class,[ 'data_class' => null])
             ->add('price');
     }/**

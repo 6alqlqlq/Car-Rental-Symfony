@@ -4,9 +4,11 @@ namespace CarRentalBundle\Form;
 
 use CarRentalBundle\Entity\Rent;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class RentType extends AbstractType
 {
@@ -18,11 +20,13 @@ class RentType extends AbstractType
         $builder
             ->add('user')
             ->add('car')
-            ->add('startAt', DateTimeType::class, [
-                'with_seconds' => false,
+            ->add('startAt', DateType::class, [
+                'widget' => 'single_text',
+
             ])
-            ->add('endAt', DateTimeType::class, [
-                'with_seconds' => false,
+            ->add('endAt', DateType::class, [
+                'widget' => 'single_text',
+
             ]);
     }
 

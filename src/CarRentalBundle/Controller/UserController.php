@@ -86,6 +86,31 @@ class UserController extends Controller
             ]
         );
     }
+    /**
+     * @Route ("/profile/edit",methods={"POST"})
+     *
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+     * @param Request $request
+     * @return Response
+     */
+    public function editProcess(Request $request)
+    {
+        $currentUser = $this->userService->currentUser();
+        $form = $this->createForm(UserType::class, $currentUser);
+
+
+        if ($currentUser->getEmail() === $request->request->get('email')) {
+            $form->remove('email');
+        }
+        $form->remove('password');
+        $form->handleRequest($request);
+
+        $this->userService->update($currentUser);
+        return $this->redirectToRoute("user_profile");
+
+
+
+    }
 
     /**
      * Lists all user entities.

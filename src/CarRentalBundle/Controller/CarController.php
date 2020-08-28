@@ -13,17 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-/**
- * Car controller.
- *
- * @Route("admin/cars")
- */
 class CarController extends Controller
 {
     /**
      * Lists all car entities.
      * @Security ("has_role('ROLE_ADMIN')")
-     * @Route("/", name="car_index",methods={"GET"})
+     * @Route("admin/cars/", name="car_index",methods={"GET"})
      */
     public function indexAction()
     {
@@ -39,7 +34,7 @@ class CarController extends Controller
     /**
      * Creates a new car entity.
      *
-     * @Route("/new", name="car_new",methods={"GET", "POST"})
+     * @Route("admin/cars/new", name="car_new",methods={"GET", "POST"})
      * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @return RedirectResponse|Response|null
@@ -68,7 +63,7 @@ class CarController extends Controller
     /**
      * Finds and displays a car entity.
      *
-     * @Route("/{id}", name="car_show",methods={"GET"})
+     * @Route("admin/cars/{id}", name="car_show",methods={"GET"})
      * @Security ("has_role('ROLE_ADMIN')")
      * @param Car $car
      * @return Response|null
@@ -86,7 +81,7 @@ class CarController extends Controller
     /**
      * Displays a form to edit an existing car entity.
      *
-     * @Route("/{id}/edit", name="car_edit",methods={"GET", "POST"})
+     * @Route("admin/cars/{id}/edit", name="car_edit",methods={"GET", "POST"})
      * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @param Car $car
@@ -115,7 +110,7 @@ class CarController extends Controller
     /**
      * Deletes a car entity.
      *
-     * @Route("/{id}", name="car_delete",methods={"DELETE"})
+     * @Route("admin/cars/{id}", name="car_delete",methods={"DELETE"})
      * @Security ("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @param Car $car
@@ -176,12 +171,10 @@ class CarController extends Controller
      * Finds and displays a car entity.
      *
      * @Route("display/{id}", name="single_car_show",methods={"GET"})
-     * @Security ("has_role('ROLE_ADMIN')")
      * @param Car $car
      * @return Response|null
      */
     public function singleShowAction(Car $car)   {
-
 
         return $this->render('car/car.html.twig', array(
             'car' => $car,

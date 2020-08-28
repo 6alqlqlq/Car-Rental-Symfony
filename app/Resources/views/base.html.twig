@@ -48,7 +48,7 @@ See http://symfony.com/doc/current/book/templating.html#template-inheritance-and
                 <ul class="navbar-nav ">
 
                     <li class="nav-item active">
-                        <a class="nav-link" href="">Logged as: {{ app.user.email }}</a>
+                        <a class="nav-link" href="{{ path('user_profile') }}">Logged as: {{ app.user.email }}</a>
                     </li>
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item active">
